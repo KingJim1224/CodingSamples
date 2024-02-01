@@ -48,3 +48,23 @@ After receiving back-end data, use JavaScript to update page elements, such as u
 #### Testing and debugging:
 
 Throughout the connection process, perform testing and debugging to ensure that communication between the front and back ends is reliable and that the application functions properly in different environments.
+
+### Part of the page and function show
+
+![Front Homepage](/Show/1.png)
+
+![Login page](/Show/2.png)
+
+![Register page](/Show/3.png)
+
+![Product Details](/Show/4.png)
+
+![Different Products](/Show/5.png)
+
+![Cart](/Show/6.png)
+
+![Orders](/Show/7.png)
+
+![Back Homepage](/Show/8.png)
+
+![Back Stage Login](/Show/9.png)
