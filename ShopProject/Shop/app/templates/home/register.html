@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html >
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<title>Register</title>
+<link rel="stylesheet" href="{{url_for('static',filename='home/css/home.css')}}" type="text/css">
+</head>
+<body>
+	<!-- 主体内容 -->
+	<div id="home-mainbody" class="container home-mainbody">
+		<div class="row">
+			<div id="home-content" class="home-content col-xs-12">
+				<div class="login-wrap"
+					style="margin-bottom: 60px; margin-top: 0px">
+					<div style="width: 11%; margin: auto;">
+						<a href="/" title="Back to Home">
+							<img src="{{url_for('static',filename='home/images/img.png')}}"></a>
+					</div>
+					<div class="login">
+						<div class="page-header" style="pause: 0;">
+							<h1 class="login_h1">Register</h1>
+						</div>
+						<!-- 会员注册表单 -->
+						<form  action="" method="post" class="form-horizontal">
+							<fieldset>
+								<div class="form-group">
+									<div class="col-sm-4 control-label">
+										{{form.username.label}}
+									</div>
+									<div class="col-sm-8">
+										<!-- 账户文本框 -->
+										{{form.username}}
+										{% for err in form.username.errors %}
+										<span class="error">{{ err }}</span>
+										{% endfor %}
+									</div>
+								</div>
+								<div class="form-group">
+									<div class="col-sm-4 control-label">
+										{{form.password.label}}
+									</div>
+									<div class="col-sm-8">
+										<!-- 密码文本框 -->
+										{{form.password}}
+										{% for err in form.password.errors %}
+										<span class="error">{{ err }}</span>
+										{% endfor %}
+									</div>
+								</div>
+								<div class="form-group">
+									<div class="col-sm-4 control-label">
+										{{form.repassword.label}}
+									</div>
+									<div class="col-sm-8">
+										<!-- 确认密码文本框 -->
+										{{form.repassword}}
+										{% for err in form.repassword.errors %}
+										<span class="error">{{ err }}</span>
+										{% endfor %}
+									</div>
+								</div>
+								<div class="form-group">
+									<div class="col-sm-4 control-label">
+										{{form.phone.label}}
+									</div>
+									<div class="col-sm-8" style="clear: none;">
+										<!-- 输入联系电话的文本框 -->
+										{{form.phone}}
+										{% for err in form.phone.errors %}
+										<span class="error">{{ err }}</span>
+										{% endfor %}
+									</div>
+								</div>
+								<div class="form-group">
+									<div class="col-sm-4 control-label">
+										{{form.email.label}}
+									</div>
+									<div class="col-sm-8" style="clear: none;">
+										<!-- 输入邮箱的文本框 -->
+										{{form.email}}
+										{% for err in form.email.errors %}
+										<span class="error">{{ err }}</span>
+										{% endfor %}
+									</div>
+								</div>
+								<div class="form-group">
+									<div style="text-align: center">
+										Terms of service：<a href="#" style="color: #0885B1;">《Digital Mall Terms of Use》</a>
+									</div>
+								</div>
+								<div class="form-group">
+									<div class="col-sm-offset-4 col-sm-8">
+										{{ form.csrf_token }}
+										{{ form.submit }}
+									</div>
+								</div>
+								<div class="form-group" style="margin: 20px;">
+									<label
+										style="float: right; color: #858585; margin: auto; width: 75%; font-size: 14px;">Already have an account? <a
+										href="{{url_for('home.login')}}">Log in now!</a></label>
+								</div>
+							</fieldset>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- //主体内容 -->
+</body>
+</html>

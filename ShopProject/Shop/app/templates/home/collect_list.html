@@ -1,0 +1,57 @@
+{% extends "home/common.html" %}
+{% block content %}
+	<!-- //网站头部 -->
+
+    <div id="home-mainbody" class="container home-mainbody">
+        <div class="row">
+            <!-- 显示订单列表 -->
+            <div id="home-content" class="home-content col-xs-12">
+                <div id="mrshop" class="mrshop common-home">
+                    <div class="container_oc">
+                        <div class="row">
+                            <div id="content_oc" class="col-sm-12">
+                                <h1>Favorites</h1>
+                                    <div class="table-responsive cart-info">
+                                        <table class="table table-bordered">
+                                            <thead>
+                                                <tr>
+                                                    <td class="text-center name">Title</td>
+                                                    <td class="text-center name">Price</td>
+                                                    <td class="text-center total">Date</td>
+                                                    <td class="text-center total">Operation</td>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {% for item in collects%}
+                                                 <tr>
+                                                    <td class="text-center name">{{item.goods.name}}</td>
+                                                    <td class="text-center quantity">$ {{item.goods.current_price}}</td>
+                                                    <td class="text-center quantity">{{item.addtime}}</td>
+                                                    <td class="text-center quantity"><a href="/collect_delete/{{ item.goods_id }}">Delete</a></td>
+                                                </tr>
+                                                {% endfor %}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                            </div>
+                        </div>
+                        <br /><br />
+                        <div class="row">
+                            <div  class="col-sm-12">
+                                <br />
+                                <br />
+                                <div class="buttons">
+                                    <div class="pull-right">
+                                        <a href="{{url_for('home.index')}}" class="tigger btn btn-primary btn-primary">Back to Home</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <!-- //显示订单列表 -->
+        </div>
+    </div>
+
+{% endblock %}

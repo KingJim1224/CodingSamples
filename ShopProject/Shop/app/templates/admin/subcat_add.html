@@ -1,0 +1,70 @@
+{% extends "admin/common.html" %}
+{% block content %}
+    <script language="javascript">
+        function mycheck() {
+            if (form1.cat_name.value == "") {
+                alert("Please enter a sub category title!");
+                form1.cat_name.focus();
+                return;
+            }
+            form1.submit();
+        }
+    </script>
+    <table width="100%" height="288" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF">
+        <tr>
+            <td align="center" valign="top">
+                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                    <tr>
+                        <td height="38" align="right">&nbsp;</td>
+                        <td colspan="5" class="tableBorder_B_dashed" width="1230px">
+                            <a href="{{ url_for('admin.supercat_add') }}">
+                                <img src="{{ url_for('static',filename='admin/images/manage_ico1.GIF') }}" width="11"
+                                     height="13">&nbsp;[Add SuperCategory]
+                            </a>
+                        </td>
+                        <td>&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td align="right">&nbsp;</td>
+                        <td height="10" colspan="3">&nbsp;</td>
+                        <td>&nbsp;</td>
+                    </tr>
+
+                </table>
+                <form action="{{ url_for('admin.subcat_add') }}" method="post" name="form1">
+                    <table width="94%" border="0" align="right" cellpadding="-2" cellspacing="-2"
+                           bordercolordark="#FFFFFF">
+                        <tr>
+                            <td height="50">Select a category：</td>
+                            <td height="50">
+                                <select name="super_cat_id">
+                                    {% for item in supercat %}
+                                        <option value="{{ item.id }}">{{ item.cat_name }}</option>
+                                    {% endfor %}
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="17%" height="50">SubCategory Title：</td>
+                            <td height="50">
+                                <input name="cat_name" type="text" id="cat_name" size="60">
+                            </td>
+                        </tr>
+                        <tr align="center">
+                            <td height="38" colspan="3">
+                                <input name="Button" type="button" class="btn_bg_short" value="Save" onClick="mycheck()">
+                                &nbsp;
+                                <input name="Submit2" type="reset" class="btn_bg_short" value="Reset">
+                                &nbsp;
+                                <input name="Submit3" type="button" class="btn_bg_short" value="Back"
+                                       onClick="JScript:window.location.href='subType.html';">
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+                <div>
+                </div>
+            </td>
+        </tr>
+    </table>
+{% endblock %}

@@ -1,0 +1,87 @@
+{% extends "admin/common.html" %}
+{% block content %}
+    <table width="100%" height="288" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF">
+        <tr>
+
+            <td align="center" valign="top">
+                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                    <tr>
+                        <td height="45" align="right">&nbsp;</td>
+                        <td colspan="5" class="tableBorder_B_dashed" width="1230px">
+                            <img src="{{ url_for('static',filename='admin/images/manage_ico1.GIF') }}" width="11"
+                                 height="11">&nbsp;
+                            <a href="{{ url_for('admin.supercat_list') }}"> [Super Category Management]</a>&nbsp;&nbsp;&nbsp;
+                            <img src="{{ url_for('static',filename='admin/images/manage_ico2.GIF') }}" width="11"
+                                 height="11">&nbsp;
+                            <a href="{{ url_for('admin.subcat_list') }}">[Sub Category Management]</a>&nbsp;&nbsp;&nbsp;
+                            <img src="{{ url_for('static',filename='admin/images/manage_ico3.GIF') }}" width="12"
+                                 height="12">&nbsp;
+                            <a href="{{ url_for('admin.goods_add') }}">[Add Goods]</a></td>
+                        <td>&nbsp;</td>
+                    </tr>
+                    <!--<tr>-->
+                    <!--<form action="">-->
+                    <!--<td width="300" height="35">-->
+                    <!--<input type="text" name="keyword" placeholder="请输入用户名或邮箱查询">-->
+                    <!--</td>-->
+                    <!--<td width="80"><button type="submit" class="btn_bg_short">搜索</button>-->
+                    <!--</td>-->
+                    <!--</form>-->
+                    <!--</tr>-->
+
+                </table>
+                <table width="100%" height="192" border="0" cellpadding="0" cellspacing="0">
+                    <tr>
+                        <td valign="top">
+                            <table width="100%" height="14" border="0" cellpadding="0" cellspacing="0">
+                                <tr>
+                                    <td height="13" align="center">&nbsp;</td>
+                                </tr>
+
+                            </table>
+                            <table width="100%" height="60" border="1" cellpadding="0" cellspacing="0"
+                                   bordercolor="#FFFFFF" bordercolordark="#FFFFFF" bordercolorlight="#E6E6E6">
+                                <tr bgcolor="#eeeeee">
+                                    <td width="40%" height="24" align="center">Username</td>
+                                    <td width="22%" align="center">Phone</td>
+                                    <td width="11%" align="center">Email</td>
+                                    <td width="11%" align="center">Spending</td>
+                                </tr>
+                                {% if page_data.items %}
+                                    {% for v in page_data.items %}
+                                        <tr style="padding:5px;">
+                                            <td height="20" align="center">{{ v.username }}</td>
+                                            <td align="center">{{ v.phone }}</td>
+                                            <td align="center">{{ v.email }}</td>
+                                            <td align="center">$ {{ v.consumption }}</td>
+                                        </tr>
+                                    {% endfor %}
+                                {% else %}
+                                    No information found！
+                                {% endif %}
+                            </table>
+                            {% if page_data %}
+                                <tbody>
+                                <tr>
+                                    <td height="100px" align="center">Current：[{{ page_data.page }}/{{ page_data.pages }}]&nbsp;
+                                        <a href="{{ url_for('admin.user_list',page=1) }}">First</a><span>&nbsp;</span>
+                                        {% if page_data.has_prev %}
+                                            <a href="{{ url_for('admin.user_list',page=page_data.prev_num) }}">Previous</a>
+                                        {% endif %}
+                                        {% if page_data.has_next %}
+                                            　
+                                            <a href="{{ url_for('admin.user_list',page=page_data.next_num) }}">Next</a>
+                                        {% endif %}　
+                                        <a href="{{ url_for('admin.user_list',page=page_data.pages) }}">Last</a>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            {% endif %}
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+
+{% endblock %}

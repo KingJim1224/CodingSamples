@@ -1,0 +1,90 @@
+{% extends "admin/common.html" %}
+{% block content %}
+    <table width="100%" height="431px" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF">
+        <tr>
+
+            <td align="center" valign="top">
+                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                    <tr>
+                        <td height="45" align="right"></td>
+                        <td colspan="5" class="tableBorder_B_dashed" width="1230px">
+                            <img src="{{ url_for('static',filename='admin/images/manage_ico1.GIF') }}" width="11"
+                                 height="11">&nbsp;
+                            <a href="{{ url_for('admin.supercat_list') }}"> [Super Category Management]</a>&nbsp;&nbsp;&nbsp;
+                            <img src="{{ url_for('static',filename='admin/images/manage_ico2.GIF') }}" width="11"
+                                 height="11">&nbsp;
+                            <a href="{{ url_for('admin.subcat_list') }}">[Sub Category Management]</a>&nbsp;&nbsp;&nbsp;
+                            <img src="{{ url_for('static',filename='admin/images/manage_ico3.GIF') }}" width="12"
+                                 height="12">&nbsp;
+                            <a href="{{ url_for('admin.goods_add') }}">[Add Goods]</a></td>
+                    </tr>
+                    <tr>
+                        <td align="right"></td>
+                        <td height="10" colspan="5">&nbsp;</td>
+                        <td>&nbsp;</td>
+                    </tr>
+
+                </table>
+                <form action="{{ url_for('admin.goods_del',id=goods.id) }}" method="get" name="form1">
+                    <table width="94%" border="0" align="right" cellpadding="-2" cellspacing="-2"
+                           bordercolordark="#FFFFFF">
+                        <tr>
+                            <td width="14%" height="27">Title：</td>
+                            <td height="27" colspan="3">
+                                <input name="ID" type="hidden" id="ID" value="24">
+                                {{ goods.name }}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td height="27">SuperCategory：</td>
+                            <td width="31%" height="27">{{ goods.supercat.cat_name }}</td>
+                            <td width="13%" height="27">SubCategory：</td>
+                            <td width="42%" height="27">{{ goods.subcat.cat_name }}</td>
+                        </tr>
+                        <tr>
+                            <td height="16">Image：</td>
+                            <td height="27" colspan="3">{{ goods.picture }}</td>
+                        </tr>
+                        <tr>
+                            <td height="27">Price：</td>
+                            <td height="27">$ {{ goods.original_price }}</td>
+                            <td height="27">Current Price：</td>
+                            <td height="27">$ {{ goods.current_price }}</td>
+                        </tr>
+                        <tr>
+                            <td height="45">IsNew：</td>
+                            <td>
+                                {% if goods.is_new %}
+                                    True
+                                {% else %}
+                                    False
+                                {% endif %}
+                            </td>
+                            <td>IsSale：</td>
+                            <td>
+                                {% if goods.is_sale %}
+                                    False
+                                {% else %}
+                                    True
+                                {% endif %}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td height="103">Description：</td>
+                            <td colspan="3"><span class="style5"></span>
+                                {{ goods.introduction }}
+                        </tr>
+                        <tr>
+                            <td height="38" colspan="4" align="center">
+                                <input name="Submit" type="submit" class="btn_bg_long1" value="Confirm">
+                                &nbsp;
+                                <input name="Submit3" type="button" class="btn_bg_short" value="Back"
+                                       onClick="javascript:history.back()"></td>
+                        </tr>
+                    </table>
+                </form>
+            </td>
+        </tr>
+    </table>
+
+{% endblock %}

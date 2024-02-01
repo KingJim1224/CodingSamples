@@ -1,0 +1,81 @@
+{% extends "admin/common.html" %}
+{% block content %}
+
+    <table width="100%" height="288" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF">
+        <tr>
+            <td align="center" valign="top">
+                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                    <tr>
+                        <td align="right">&nbsp;</td>
+                        <td height="10" colspan="5">&nbsp;</td>
+
+                    </tr>
+                    <tr>
+                        <td align="right">&nbsp;</td>
+                        <td height="10" colspan="5">
+                            <form action="" method="get">
+                                <input type="text" placeholder="Search by order number!" name="keywords" id="orderId"/>
+                                <td><input type="submit" value="Search"/></td>
+
+                            </form>
+                        </td>
+                        <td>&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td height="29" align="right">&nbsp;</td>
+                        <td width="10"
+                            background="{{ url_for('static',filename='admin/images/manage_leftTitle_left.gif') }}">
+                            &nbsp;
+                        </td>
+                        <td width="1089" align="center"
+                            background="{{ url_for('static',filename='admin/images/manage_leftTitle_mid.gif') }}"
+                            class="word_white">
+                            <b>Orders List</b>
+                        </td>
+                        <td width="10"
+                            background="{{ url_for('static',filename='admin/images/manage_leftTitle_right.gif') }}">
+                            &nbsp;
+                        </td>
+                        <td>&nbsp</td>
+                    </tr>
+                    <table width="96%" height="48" border="1" cellpadding="0" cellspacing="0" bordercolor="#FFFFFF"
+                           bordercolordark="#CCCCCC" bordercolorlight="#FFFFFF">
+                        <tr align="center">
+                            <td width="8%" height="30">Order Number</td>
+                            <td width="10%">Consignees</td>
+                            <td width="15%">Phone</td>
+                            <td width="15%">Address</td>
+                            <td width="26%">Date</td>
+                        </tr>
+                        {% for v in page_data.items %}
+                            <tr align="center">
+                                <td height="24">
+                                    <a href="{{ url_for('admin.orders_detail',order_id=v.id) }}">{{ v.id }}</a>
+                                </td>
+                                <td>{{ v.recevie_name }}</td>
+                                <td>{{ v.recevie_tel }}</td>
+                                <td>{{ v.recevie_address }}</td>
+                                <td>{{ v.addtime }}</td>
+                            </tr>
+                        {% endfor %}
+                    </table>
+                    <table>
+                        <tr>
+                            <td height="100px" align="right">Current：[{{ page_data.page }}/{{ page_data.pages }}]&nbsp;
+                                <a href="{{ url_for('admin.orders_list',page=1) }}">First</a>
+                                {% if page_data.has_prev %}
+                                    <a href="{{ url_for('admin.orders_list',page=page_data.prev_num) }}">Previous</a>
+                                {% endif %}
+                                {% if page_data.has_next %}
+                                    　     <a href="{{ url_for('admin.orders_list',page=page_data.next_num) }}">Next</a>
+                                {% endif %}　
+                                <a href="{{ url_for('admin.orders_list',page=page_data.pages) }}">Last</a>
+                            </td>
+                        </tr>
+                    </table>
+                    </td>
+                </table>
+            </td>
+        </tr>
+    </table>
+{% endblock %}

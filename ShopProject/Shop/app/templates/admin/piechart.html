@@ -1,0 +1,76 @@
+{% extends "admin/common.html" %}
+{% block content %}
+
+<table width="100%" height="288" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF">
+    <tr>
+        <td align="center" valign="top">
+            <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                <tr>
+                    <td align="right">&nbsp;</td>
+                    <td height="10" colspan="5">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td align="right">&nbsp;</td>
+                    <td height="10" colspan="5">
+                        <form action="{{ url_for('admin.piechart') }}" method="get">
+                            <input type="text" placeholder="Enter product name" name="keywords" id="productName"/>
+                            <input type="submit" value="Generate Pie Chart"/>
+                        </form>
+                    </td>
+                    <td>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td height="29" align="right">&nbsp;</td>
+                    <td width="10" background="{{ url_for('static',filename='admin/images/manage_leftTitle_left.gif') }}">&nbsp;</td>
+                    <td width="1089" align="center" background="{{ url_for('static',filename='admin/images/manage_leftTitle_mid.gif') }}" class="word_white">
+                        <h2>Pie Chart - Sales Distribution by Region</h2>
+                    </td>
+                    <td width="10" background="{{ url_for('static',filename='admin/images/manage_leftTitle_right.gif') }}">&nbsp;</td>
+                    <td>&nbsp</td>
+                </tr>
+            </table>
+
+            <!-- Main Results Table -->
+            <div style="width: 80%; margin: auto;">
+                <canvas id="pieChart"></canvas>
+            </div>
+
+            <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+            <script>
+                // Set up the pie chart
+                var ctx = document.getElementById('pieChart').getContext('2d');
+                var pieChart = new Chart(ctx, {
+                    type: 'pie',
+                    data: {
+                        labels: [
+                            {% for label in labels %}
+                                '{{ label }}',
+                            {% endfor %}
+                        ],
+                        datasets: [{
+                            data: [
+                                {% for value in values %}
+                                    {{ value }},
+                                {% endfor %}
+                            ],
+                            backgroundColor: [
+                                'rgba(255, 99, 132, 0.8)',
+                                'rgba(54, 162, 235, 0.8)',
+                                'rgba(255, 206, 86, 0.8)',
+                                'rgba(75, 192, 192, 0.8)',
+                                'rgba(153, 102, 255, 0.8)',
+                                'rgba(255, 159, 64, 0.8)'
+                            ]
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false
+                    }
+                });
+            </script>
+        </td>
+    </tr>
+</table>
+
+{% endblock %}

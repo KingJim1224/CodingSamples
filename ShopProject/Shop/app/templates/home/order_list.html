@@ -1,0 +1,65 @@
+{% extends "home/common.html" %}
+{% block content %}
+	<!-- //网站头部 -->
+
+    <div id="home-mainbody" class="container home-mainbody">
+        <div class="row">
+            <!-- 显示订单列表 -->
+            <div id="home-content" class="home-content col-xs-12">
+                <div id="mrshop" class="mrshop common-home">
+                    <div class="container_oc">
+                        <div class="row">
+                            <div id="content_oc" class="col-sm-12">
+                                <h1>Orders</h1>
+                                    <div class="table-responsive cart-info">
+                                        <table class="table table-bordered">
+                                            <thead>
+                                                <tr>
+                                                    <td class="text-center image">Order number</td>
+                                                    <td class="text-center name">Title</td>
+                                                    <td class="text-center name">Quantity</td>
+                                                    <td class="text-center name">Price</td>
+                                                    <td class="text-center name">Total</td>
+                                                    <td class="text-center quantity">Name</td>
+                                                    <td class="text-center price">Phone</td>
+                                                    <td class="text-center total">Date</td>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {% for item in orders%}
+                                                 <tr>
+                                                    <td class="text-center image" width="10%">{{item.orders.id}}</td>
+                                                    <td class="text-center name">{{item.goods.name}}</td>
+                                                    <td class="text-center quantity">{{item.number}}piece</td>
+                                                    <td class="text-center quantity">$ {{item.goods.current_price}}</td>
+                                                    <td class="text-center quantity">$ {{item.number*item.goods.current_price}}</td>
+                                                    <td class="text-center quantity">{{item.orders.recevie_name}}</td>
+                                                    <td class="text-center quantity">{{item.orders.recevie_tel}}</td>
+                                                    <td class="text-center quantity">{{item.orders.addtime}}</td>
+                                                </tr>
+                                                {% endfor %}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                            </div>
+                        </div>
+                        <br /><br />
+                        <div class="row">
+                            <div  class="col-sm-12">
+                                <br />
+                                <br />
+                                <div class="buttons">
+                                    <div class="pull-right">
+                                        <a href="{{url_for('home.index')}}" class="tigger btn btn-primary btn-primary">Continue shopping</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <!-- //显示订单列表 -->
+        </div>
+    </div>
+
+{% endblock %}

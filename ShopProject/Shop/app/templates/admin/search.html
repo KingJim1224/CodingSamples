@@ -1,0 +1,63 @@
+{% extends "admin/common.html" %}
+{% block content %}
+
+<table width="100%" height="288" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF">
+    <tr>
+        <td align="center" valign="top">
+            <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                <tr>
+                    <td align="right">&nbsp;</td>
+                    <td height="10" colspan="5">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td align="right">&nbsp;</td>
+                    <td height="10" colspan="5">
+                        <form action="{{ url_for('admin.search') }}" method="get">
+                            <input type="text" placeholder="Search by product name!" name="keywords" id="productName"/>
+                            <input type="submit" value="Search"/>
+                        </form>
+                    </td>
+                    <td>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td height="29" align="right">&nbsp;</td>
+                    <td width="10" background="{{ url_for('static',filename='admin/images/manage_leftTitle_left.gif') }}">&nbsp;</td>
+                    <td width="1089" align="center" background="{{ url_for('static',filename='admin/images/manage_leftTitle_mid.gif') }}" class="word_white">
+                        <b>Search Results</b>
+                    </td>
+                    <td width="10" background="{{ url_for('static',filename='admin/images/manage_leftTitle_right.gif') }}">&nbsp;</td>
+                    <td>&nbsp</td>
+                </tr>
+            </table>
+
+            <!-- Main Results Table -->
+            <table width="96%" height="48" border="1" cellpadding="0" cellspacing="0" bordercolor="#FFFFFF" bordercolordark="#CCCCCC" bordercolorlight="#FFFFFF">
+                <tr align="center">
+                    <td width="15%" height="30">Product Name</td>
+                    <td width="15%">Total Sales Count</td>
+                    <td width="15%">Total Sales</td>
+                    <td width="15%">Total Profit</td>
+                    <td width="15%">Top Customer Name</td>
+                    <td width="15%">Top Customer Purchases</td>
+                    <!-- Add additional columns as needed for other queries -->
+                </tr>
+                {% if product_info %}
+                    <tr align="center">
+                        <td height="24">{{ product_info.name }}</td>
+                        <td>{{ total_sales_count }}</td>
+                        <td>{{ total_sales }}</td>
+                        <td>{{ total_profit }}</td>
+                        <td>{{ top_customer_name }}</td>
+                        <td>{{ top_customer_purchases }}</td>
+                        <!-- Add additional columns as needed for other queries -->
+                    </tr>
+                {% endif %}
+
+            </table>
+
+
+        </td>
+    </tr>
+</table>
+
+{% endblock %}

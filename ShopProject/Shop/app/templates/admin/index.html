@@ -1,0 +1,99 @@
+{% extends "admin/common.html" %}
+{% block content %}
+    <table width="100%" height="431px" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF">
+        <tr>
+            <td align="center" valign="top">
+                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                    <tr>
+                        <td height="45" align="right"></td>
+                        <td colspan="5" class="tableBorder_B_dashed">
+                            <img src="{{ url_for('static',filename='admin/images/manage_ico1.GIF') }}" width="11"
+                                 height="11">&nbsp;
+                            <a href="{{ url_for('admin.supercat_list') }}"> [Super Category Management]</a>&nbsp;&nbsp;&nbsp;
+                            <img src="{{ url_for('static',filename='admin/images/manage_ico2.GIF') }}" width="11"
+                                 height="11">&nbsp;
+                            <a href="{{ url_for('admin.subcat_list') }}">[Sub Category Management]</a>&nbsp;&nbsp;&nbsp;
+                            <img src="{{ url_for('static',filename='admin/images/manage_ico3.GIF') }}" width="12"
+                                 height="12">&nbsp;
+                            <a href="{{ url_for('admin.goods_add') }}">[Add Goods]</a></td>
+
+                    </tr>
+                    <tr>
+                        <td align="right"></td>
+                        <td height="10" colspan="5">&nbsp;</td>
+                        <td>&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td height="29" align="right"></td>
+                        <td width="1230px" align="center"
+                            background="{{ url_for('static',filename='admin/images/manage_leftTitle.jpg') }}"
+                            class="word_white"><b>Goods List</b></td>
+                    </tr>
+                </table>
+                <!---->
+                <table width="98.5%" height="192" border="0" cellpadding="0" cellspacing="0">
+                    <tr>
+                        <td valign="top">
+                            <table width="100%" height="14" border="0" cellpadding="0" cellspacing="0">
+                                <tr>
+                                    <td height="13" align="center">&nbsp;</td>
+                                </tr>
+
+                            </table>
+                            <table width="100%" height="60" border="1" cellpadding="0" cellspacing="0"
+                                   bordercolor="#FFFFFF" bordercolordark="#FFFFFF" bordercolorlight="#E6E6E6">
+                                <tr bgcolor="#eeeeee">
+                                    <td width="40%" height="24" align="center">Title</td>
+                                    <td width="22%" align="center">Price</td>
+                                    <td width="11%" align="center">IsNew</td>
+                                    <td width="11%" align="center">IsSale</td>
+                                    <td width="8%" align="center">Modify</td>
+                                    <td width="8%" align="center">Delete</td>
+                                </tr>
+                                {% for v in page_data.items %}
+                                    <tr style="padding:5px;">
+                                        <td height="20" align="center">
+                                            <a href="{{ url_for('admin.goods_detail',goods_id=v.id) }}">{{ v.name }}</a>
+                                        </td>
+                                        <td align="center">$ {{ v.current_price }}</td>
+                                        <td align="center">{% if v.is_new %} True {% else %} False {% endif %}</td>
+                                        <td align="center">{% if v.is_sale %} True {% else %} False {% endif %}</td>
+                                        <td align="center">
+                                            <a href="{{ url_for('admin.goods_edit',id=v.id) }}">
+                                                <img src="{{ url_for('static',filename='admin/images/modify.gif') }}"
+                                                     width="19" height="19">
+                                            </a>
+                                        </td>
+                                        <td align="center">
+                                            <a href="{{ url_for('admin.goods_del_confirm',goods_id=v.id) }}">
+                                                <img src="{{ url_for('static',filename='admin/images/del.gif') }}"
+                                                     width="20" height="20">
+                                            </a>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                            </table>
+                            {% if page_data %}
+                                <tbody>
+                                <tr>
+                                    <td height="100px" align="center">Current：[{{ page_data.page }}/{{ page_data.pages }}]&nbsp;
+                                        <a href="{{ url_for('admin.index',page=1) }}">First</a><span>&nbsp;</span>
+                                        {% if page_data.has_prev %}
+                                            <a href="{{ url_for('admin.index',page=page_data.prev_num) }}">Previous</a>
+                                        {% endif %}
+                                        {% if page_data.has_next %}
+                                            　     <a href="{{ url_for('admin.index',page=page_data.next_num) }}">Next</a>
+                                        {% endif %}　
+                                        <a href="{{ url_for('admin.index',page=page_data.pages) }}">Last</a>
+                                    </td>
+                                </tr>
+                                </table>
+                            {% endif %}
+                        </td>
+                    </tr>
+                </table>
+                <!---->
+            </td>
+        </tr>
+    </table>
+{% endblock %}

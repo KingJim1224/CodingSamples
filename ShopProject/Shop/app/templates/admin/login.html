@@ -1,0 +1,70 @@
+<!Doctype html>
+<html>
+<head>
+    <title>DMS-Log in</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link href="{{ url_for('static',filename='admin/css/style.css') }}" rel="stylesheet">
+    <script src="{{ url_for('static',filename='admin/js/check.js') }}"></script>
+    <style type="text/css">
+        body {
+            margin: 0px;
+        }
+    </style>
+</head>
+
+<body>
+<table width="100%" height="545" border="0" cellpadding="0" cellspacing="0">
+    <tr>
+        <td>
+            <form method="post" action="{{ url_for('admin.login') }}">
+                <table width="700px" height="539px" border="0" align="center"
+                       style="margin-top:170px;background:url('/static/admin/images/managelogin_dialog.jpg') no-repeat"
+                       cellpadding="0" cellspacing="0">
+                    <tr>
+                        <td width="55" height="280" align="center" valign="top">&nbsp;</td>
+                        <td width="436" align="left" valign="top">
+                            <table style="margin:185px 36px" width="70%" height="240" border="0" cellpadding="0"
+                                   cellspacing="0">
+                                <tr>
+                                    <td width="99%" height="74" align="center">
+                                        {{ form.manager }}
+                                        {% for err in form.manager.errors %}
+                                            <p style="color: red;float:left">{{ err }}</p>
+                                        {% endfor %}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td height="30" align="center">
+                    <span class="word_white">
+                    {{ form.password }}
+                  </span>{% for msg in get_flashed_messages(category_filter=["err"]) %}
+                                    <p class="login-box-msg" style="color: red">{{ msg }}</p>
+                                {% endfor %}</td>
+                                </tr>
+                                <tr>
+                                    <td height="57" align="center">
+                                        {{ form.csrf_token }}
+                                        {{ form.submit }}
+                                        <input type="reset" class="login_reset" value="Reset">
+                                </tr>
+                                {% for msg in get_flashed_messages(category_filter=["ok"]) %}
+                                    <p class="login-box-msg" style="color: green">{{ msg }}</p>
+                                {% endfor %}
+
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+            </form>
+            <table width="491" height="39" border="0" align="center" cellpadding="0" cellspacing="0">
+                <tr>
+                    <td align="center">Copyright(C). Create By Digital 2023, All Rights Reserved | </span><a
+                href="/" target="_blank" style="color: #1aa2d8">Go to shop</a></td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+</body>
+
+</html>
